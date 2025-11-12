@@ -1,0 +1,5 @@
+<div class="container text-center mt-5">
+  <h2>Panel del Taller</h2>
+  <p *ngIf="user$ | async as user">Bienvenido, {{ user.nombre }}</p>
+  <button class="btn btn-danger" (click)="logout()">Cerrar sesión</button>
+</div>
