@@ -1,0 +1,25 @@
+.panel-container {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.acciones {
+  margin-top: 30px;
+}
+
+button {
+  background-color: #1976d2;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0f4b8c;
+}
+

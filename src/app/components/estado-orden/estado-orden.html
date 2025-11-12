@@ -1,0 +1,15 @@
+<h2 class="titulo">Estado de tus Órdenes</h2>
+
+<div class="ordenes-container">
+  <div class="orden-card" *ngFor="let orden of ordenes$ | async">
+    <div class="orden-header">
+      🚗 {{ orden.vehiculoId }}
+    </div>
+    <div class="orden-body">
+      <span class="label">Estado:</span>
+      <span class="estado" [ngClass]="orden.estado.toLowerCase()">{{ orden.estado }}</span>
+    </div>
+  </div>
+</div>
+
+

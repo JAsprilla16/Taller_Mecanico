@@ -1,0 +1,11 @@
+<h2 class="titulo">Historial de Servicios</h2>
+
+<div class="historial-container">
+  <div class="historial-card" *ngFor="let servicio of historial$ | async">
+    <div class="vehiculo">{{ servicio.vehiculo }}</div>
+    <div class="fecha">{{ servicio.fecha | date:'shortDate' }}</div>
+    <div class="estado">{{ servicio.estado }}</div>
+  </div>
+</div>
+
+

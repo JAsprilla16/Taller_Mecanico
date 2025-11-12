@@ -1,14 +1,17 @@
-<div class="panel-container" style="text-align:center; margin-top:40px;">
-  <h2>Panel del Taller</h2>
+<h1 style="color:red; font-size:40px;">Agenda o revisa tus citas</h1>
 
-  <div *ngIf="user$ | async as user; else sinUsuario">
-    <p>Bienvenido, {{ user.email }}</p>
+<div *ngIf="user$ | async as user; else noUser">
+  <h2>Bienvenido, {{ user.displayName || user.email }}</h2>
 
-    <button (click)="irARegistrarVehiculo()">Registrar vehículo</button>
-    <button (click)="logout()">Cerrar sesión</button>
+  <div class="acciones">
+    <button (click)="irARegistrarVehiculo()">🚗 Registrar vehículo</button>
+    <button (click)="irASolicitarRevision()">🧰 Solicitar revisión</button>
+    <button (click)="irAEstadoOrden()">📋 Estado de orden</button>
+    <button (click)="irAHistorial()">🕓 Historial de servicios</button>
+    <button (click)="logout()">🚪 Cerrar sesión</button>
   </div>
-
-  <ng-template #sinUsuario>
-    <p>No hay usuario activo. Inicia sesión para continuar.</p>
-  </ng-template>
 </div>
+
+<ng-template #noUser>
+  <p>No hay usuario autenticado.</p>
+</ng-template>

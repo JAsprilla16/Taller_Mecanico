@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Solicitar revisión</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+  <label class="form-label">Selecciona tu vehículo</label>
+  <input type="text" class="form-control" placeholder="Ingresa el ID o placa del vehículo" [(ngModel)]="vehiculoId" required>
+</div>
+    <label for="motivo">Motivo:</label>
+    <input id="motivo" formControlName="motivo" placeholder="Describe el motivo de la revisión">
+
+    <button type="submit">Enviar solicitud</button>
+  </form>
+
+  <p *ngIf="mensaje">{{ mensaje }}</p>
+</div>

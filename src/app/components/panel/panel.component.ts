@@ -1,33 +1,41 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
-
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-panel',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './panel.component.html'
+  templateUrl: './panel.component.html',
+  styleUrls: ['./panel.component.css']
 })
-export class PanelComponent  {
-
-  user$: Observable<any>; // <-- declaramos la propiedad
+export class PanelComponent {
+  user$: Observable<any>;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.user$ = this.authService.user$; // <-- asignamos el observable del servicio
+    this.user$ = this.authService.user$;
   }
-  
 
   irARegistrarVehiculo() {
     this.router.navigate(['/registrar-vehiculo']);
   }
 
-  logout() {
+  irASolicitarRevision() {
+  this.router.navigate(['/solicitar-revision']);
+}
+
+irAEstadoOrden() {
+  this.router.navigate(['/estado-orden']);
+}
+
+irAHistorial() {
+  this.router.navigate(['/historial-servicios']);
+}
+
+logout() {
     this.authService.logout();
   }
-  
-
 }
 

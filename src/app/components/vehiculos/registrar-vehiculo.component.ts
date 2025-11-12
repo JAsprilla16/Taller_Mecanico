@@ -83,7 +83,7 @@ export class RegistrarVehiculoComponent {
             this.submitting = false;
             sub.unsubscribe();
             // redirige a pantalla de lista o dashboard
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/panel']);
           },
           error: (err) => {
             console.error(err);

@@ -13,7 +13,7 @@ export class LoginComponent {
   async login() {
     try {
       await this.authService.loginWithGoogle();
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/panel']);
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
     }
