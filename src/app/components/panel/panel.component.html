@@ -1,0 +1,14 @@
+<div class="panel-container" style="text-align:center; margin-top:40px;">
+  <h2>Panel del Taller</h2>
+
+  <div *ngIf="user$ | async as user; else sinUsuario">
+    <p>Bienvenido, {{ user.email }}</p>
+
+    <button (click)="irARegistrarVehiculo()">Registrar vehículo</button>
+    <button (click)="logout()">Cerrar sesión</button>
+  </div>
+
+  <ng-template #sinUsuario>
+    <p>No hay usuario activo. Inicia sesión para continuar.</p>
+  </ng-template>
+</div>

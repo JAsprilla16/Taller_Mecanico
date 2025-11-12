@@ -1,5 +1,8 @@
-<div class="container text-center mt-5">
+<div class="container">
   <h2>Panel del Taller</h2>
-  <p *ngIf="user$ | async as user">Bienvenido, {{ user.nombre }}</p>
-  <button class="btn btn-danger" (click)="logout()">Cerrar sesión</button>
+  <p>Bienvenido, {{ (user$ | async)?.displayName || 'Usuario' }}</p>
+
+  <button (click)="logout()">Cerrar sesión</button>
+
+  <a routerLink="/registrar-vehiculo">Registrar nuevo ehículo</a>
 </div>

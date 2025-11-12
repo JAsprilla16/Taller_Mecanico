@@ -8,11 +8,11 @@ import { User } from '../../models/user';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule], // 👈 Agrega esto
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {
-  user$: Observable<User | null>;
+  user$: Observable<any>;
 
   constructor(private authService: AuthService, private router: Router) {
     this.user$ = this.authService.user$;
