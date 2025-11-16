@@ -21,15 +21,20 @@ export class OrdenesService {
     return addDoc(ref, data);
   }
 
-  // 🔹 Obtiene todas las órdenes en tiempo real
-  obtenerOrdenes(): Observable<OrdenPayload[]> {
-    const colRef = collection(this.firestore, 'ordenes');
-    return collectionData(colRef, { idField: 'id' }) as Observable<OrdenPayload[]>;
-  }
+  // 🔹 Obtiene las órdenes de un usuario específico
+
+obtenerOrdenesUsuario(uid: string): Observable<OrdenPayload[]> {
+  const colRef = collection(this.firestore, 'ordenes');
+  const q = query(colRef, where("propietarioUid", "==", uid));
+  return collectionData(q, { idField: 'id' }) as Observable<OrdenPayload[]>;
+}
+
+
+  
 
   // 🔹 Obtiene el historial de servicios (por ahora simulado o desde otra colección)
   obtenerHistorial(): Observable<OrdenPayload[]> {
-    const colRef = collection(this.firestore, 'historial');
+    const colRef = collection(this.firestore, 'ordenes');
     return collectionData(colRef, { idField: 'id' }) as Observable<OrdenPayload[]>;
   }
 }

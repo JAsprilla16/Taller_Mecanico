@@ -11,11 +11,14 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   async login() {
-    try {
-      await this.authService.loginWithGoogle();
-      this.router.navigate(['/panel']);
-    } catch (error) {
-      console.error('Error al iniciar sesión:', error);
-    }
+  const email = await this.authService.loginWithGoogle();
+
+  const adminEmail = "arcosasprillajose@gmail.com";
+
+  if (email === adminEmail) {
+    this.router.navigate(['/admin']);
+  } else {
+    this.router.navigate(['/panel']);
   }
+}
 }

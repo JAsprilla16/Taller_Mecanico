@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../models/user';
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,14 +12,16 @@ import { User } from '../../models/user';
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {
-  user$: Observable<any>;
+
+  user$: Observable<User | null>;
 
   constructor(private authService: AuthService, private router: Router) {
     this.user$ = this.authService.user$;
   }
 
   async logout() {
-    await this.authService.logout();
-    this.router.navigate(['/']);
-  }
+  await this.authService.logout();
+  this.router.navigate(['/login']);
+}
+
 }

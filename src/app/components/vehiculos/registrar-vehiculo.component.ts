@@ -101,4 +101,8 @@ export class RegistrarVehiculoComponent {
       }
     });
   }
+
+  volver() {
+    this.router.navigate(['/panel']);
+  }
 }

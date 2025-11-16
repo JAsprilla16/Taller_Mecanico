@@ -1,4 +1,9 @@
 <div class="container mt-4">
+
+  <button class="btn btn-secondary mb-3" (click)="volver()">
+    ⬅️ Volver
+  </button>
+  
   <h2>Registrar Vehículo</h2>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-3">

@@ -35,7 +35,9 @@ irAHistorial() {
 }
 
 logout() {
-    this.authService.logout();
-  }
+  this.authService.logout().then(() => {
+    this.router.navigate(['/login']);
+  });
+}
 }
 
