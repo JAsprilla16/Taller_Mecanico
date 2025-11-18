@@ -6,19 +6,34 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   constructor(private authService: AuthService, private router: Router) {}
 
   async login() {
-  const email = await this.authService.loginWithGoogle();
+  try {
+    const cred = await this.authService.loginWithGoogle();
 
-  const adminEmail = "arcosasprillajose@gmail.com";
+    if (!cred || !cred.user) {
+      console.error("No se pudo obtener el usuario.");
+      return;
+    }
 
-  if (email === adminEmail) {
-    this.router.navigate(['/admin']);
-  } else {
-    this.router.navigate(['/panel']);
+    const email = cred.user.email;
+    const adminEmail = "arcosasprillajose@gmail.com";
+
+    if (email === adminEmail) {
+      this.router.navigate(['/admin']);
+    } else {
+      this.router.navigate(['/panel']);
+    }
+
+  } catch (err) {
+    console.error("Error al iniciar sesión:", err);
   }
 }
+
 }
+

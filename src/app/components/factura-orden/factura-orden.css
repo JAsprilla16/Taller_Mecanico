@@ -1,0 +1,118 @@
+/* ------------------------------
+   FONDO GENERAL ORO → ROJO SUAVE
+------------------------------ */
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 25px;
+  background: linear-gradient(135deg, #f5d486, #f2a27e, #e46c6c);
+  background-size: cover;
+}
+
+/* ------------------------------
+   BOTÓN VOLVER
+------------------------------ */
+.btn-secondary {
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.btn-secondary:hover {
+  transform: scale(1.05);
+}
+
+/* ------------------------------
+   TÍTULO PRINCIPAL
+------------------------------ */
+.titulo {
+  text-align: center;
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 22px;
+  color: #4a2929;
+}
+
+/* ------------------------------
+   TARJETAS (SECCIONES)
+------------------------------ */
+.seccion {
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  animation: fadeIn 0.3s ease;
+}
+
+.seccion h4 {
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #4a2929;
+}
+
+/* ------------------------------
+   TABLAS GENERAL
+------------------------------ */
+.table {
+  width: 100%;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  overflow: hidden;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.table th {
+  background: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+  color: #4a2929;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ------------------------------
+   TABLA DE RESUMEN DE COSTOS
+------------------------------ */
+.tabla-costos {
+  margin-top: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.tabla-costos th {
+  width: 50%;
+}
+
+.total-final th,
+.total-final td {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4a2929;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+
+/* ------------------------------
+   ANIMACIÓN GLOBAL SUAVE
+------------------------------ */
+* {
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+

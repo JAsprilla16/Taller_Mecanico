@@ -1,0 +1,74 @@
+<button class="btn btn-secondary mb-3" (click)="volver()">⬅ Volver</button>
+
+<div *ngIf="cargando">Cargando...</div>
+
+<div *ngIf="!cargando && orden">
+
+  <h2 class="titulo">Factura de Servicio</h2>
+
+  <!-- VEHÍCULO -->
+  <div class="card seccion">
+    <h4>Vehículo</h4>
+    <p><strong>Placa:</strong> {{ vehiculo?.placa }}</p>
+    <p><strong>Marca:</strong> {{ vehiculo?.marca }}</p>
+    <p><strong>Modelo:</strong> {{ vehiculo?.modelo }}</p>
+    <p><strong>Año:</strong> {{ vehiculo?.anho }}</p>
+    <p><strong>Color:</strong> {{ vehiculo?.color }}</p>
+  </div>
+
+  <!-- ORDEN -->
+  <div class="card seccion">
+    <h4>Detalles del Servicio</h4>
+    <p><strong>Motivo:</strong> {{ orden.motivo }}</p>
+    <p><strong>Estado:</strong> {{ orden.estado }}</p>
+    <p><strong>Mecánico:</strong> {{ orden.mecanicoId || 'No asignado' }}</p>
+    <p><strong>Diagnóstico:</strong> {{ orden.descripcion || 'No registrado' }}</p>
+    <p><strong>Fecha:</strong> {{ orden.fecha?.toDate() | date:'short' }}</p>
+  </div>
+
+  <!-- REPUESTOS -->
+  <div class="card seccion">
+    <h4>Repuestos utilizados</h4>
+
+    <table class="table">
+      <tr>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Subtotal</th>
+      </tr>
+
+      <tr *ngFor="let r of orden.repuestos">
+        <td>{{ r.nombre }}</td>
+        <td>{{ r.cantidad }}</td>
+        <td>${{ r.precio }}</td>
+        <td>${{ r.precio * r.cantidad }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- COSTOS -->
+  <div class="card seccion">
+
+    <h4>Resumen de Costos</h4>
+
+    <table class="table table-bordered tabla-costos">
+      <tr>
+        <th>Total repuestos</th>
+        <td>${{ totalRepuestos }}</td>
+      </tr>
+
+      <tr>
+        <th>Mano de obra</th>
+        <td>${{ orden.manoObra || 0 }}</td>
+      </tr>
+
+      <tr class="total-final">
+        <th>Total a pagar</th>
+        <td><strong>${{ totalFinal }}</strong></td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+

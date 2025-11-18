@@ -65,13 +65,79 @@ export const routes: Routes = [
       ),
   },
 
-  // Admin Login
+  // Factura de orden
+  {
+  path: 'factura/:id',
+  canActivate: [AuthGuard],
+  loadComponent: () =>
+    import('./components/factura-orden/factura-orden')
+      .then(m => m.FacturaOrdenComponent)
+},
+
+  // Admin Panel
   {
     path: 'admin',
     canActivate: [AdminGuard],
-    loadComponent: () => import('./components/admin/admin').then(m => m.Admin)
+    loadComponent: () => import('./components/admin-panel/admin-panel').then(m => m.Admin)
   },
 
+  // Admin Ordenes
+  {
+  path: 'admin/ordenes',
+  canActivate: [AdminGuard],
+  loadComponent: () =>
+    import('./components/admin-ordenes/admin-ordenes')
+      .then(m => m.AdminOrdenesComponent)
+},
+
+  // Admin Editar Orden
+  {
+  path: 'admin/orden/:id',
+  canActivate: [AdminGuard],
+  loadComponent: () =>
+    import('./components/admin-editar-orden/admin-editar-orden')
+      .then(m => m.AdminEditarOrdenComponent)
+},
+
+  // Admin Historial Vehículo
+  {
+  path: 'admin/historial/:id',
+  canActivate: [AdminGuard],
+  loadComponent: () =>
+    import('./components/admin-historial-vehiculo/admin-historial-vehiculo')
+      .then(m => m.AdminHistorialVehiculoComponent)
+},
+
+  // Admin Vehículos
+  {
+  path: 'admin/vehiculos',
+  canActivate: [AdminGuard],
+  loadComponent: () =>
+    import('./components/admin-vehiculos/admin-vehiculos').then(
+      m => m.AdminVehiculosComponent
+    ),
+},
+
+  //Admin Reportes
+  {
+    path: 'admin/reportes',
+    canActivate: [AdminGuard],
+    loadComponent: () =>
+      import('./components/admin-reportes/admin-reportes').then(
+        m => m.AdminReportesComponent
+      )
+},
+
+//Admin Factura Orden
+{
+  path: 'admin/factura/:id',
+  canActivate: [AdminGuard],
+  loadComponent: () =>
+    import('./components/factura-orden/factura-orden')
+      .then(m => m.FacturaOrdenComponent)
+},
+
+// Ruta comodín para redirigir a login si no se encuentra la ruta
   { path: '**', redirectTo: 'login' },
 ];
 

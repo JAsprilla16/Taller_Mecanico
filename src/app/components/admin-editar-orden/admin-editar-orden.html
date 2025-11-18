@@ -1,0 +1,95 @@
+<button class="btn btn-secondary mb-3" (click)="volver()">⬅ Volver</button>
+
+<div *ngIf="cargando">Cargando orden...</div>
+
+<div *ngIf="!cargando && orden">
+
+  <h2 class="titulo">Editar Orden</h2>
+
+  <!-- INFORMACIÓN PRINCIPAL -->
+  <div class="card seccion">
+    <h4>Información principal</h4>
+    <p><strong>Vehículo:</strong> {{ orden.vehiculoId }}</p>
+    <p><strong>Motivo:</strong> {{ orden.motivo }}</p>
+    <p><strong>Cliente UID:</strong> {{ orden.propietarioUid }}</p>
+  </div>
+
+  <!-- CAMBIAR ESTADO -->
+  <div class="card seccion">
+    <h4>Estado</h4>
+    <select
+      #estadoSelect
+      class="form-select w-50"
+      (change)="cambiarEstado(estadoSelect.value)"
+    >
+      <option [value]="'Pendiente'" [selected]="orden.estado == 'Pendiente'">
+        Pendiente
+      </option>
+      <option [value]="'Diagnóstico'" [selected]="orden.estado == 'Diagnóstico'">
+        Diagnóstico
+      </option>
+      <option [value]="'Reparación'" [selected]="orden.estado == 'Reparación'">
+        Reparación
+      </option>
+      <option [value]="'Finalizado'" [selected]="orden.estado == 'Finalizado'">
+        Finalizado
+      </option>
+    </select>
+  </div>
+
+  <!-- DATOS ADMIN -->
+  <div class="card seccion">
+    <h4>Datos Administrativos</h4>
+
+    <form [formGroup]="datosForm" (ngSubmit)="guardarDatos()">
+
+      <label>Descripción / Diagnóstico</label>
+      <textarea formControlName="descripcion" class="form-control"></textarea>
+
+      <label class="mt-3">Mecánico asignado</label>
+      <input formControlName="mecanicoId" type="text" class="form-control">
+
+      <button class="btn btn-primary mt-3" type="submit">Guardar</button>
+    </form>
+  </div>
+
+  <!-- AGREGAR REPUESTO -->
+  <div class="card seccion">
+    <h4>Repuestos Usados</h4>
+
+    <form [formGroup]="repuestoForm" class="row g-3" (ngSubmit)="agregarRepuesto()">
+
+      <div class="col-md-4">
+        <input formControlName="nombre" placeholder="Nombre" class="form-control">
+      </div>
+
+      <div class="col-md-3">
+        <input formControlName="precio" type="number" placeholder="Precio" class="form-control">
+      </div>
+
+      <div class="col-md-3">
+        <input formControlName="cantidad" type="number" placeholder="Cantidad" class="form-control">
+      </div>
+
+      <div class="col-md-2">
+        <button class="btn btn-success w-100" type="submit">Añadir</button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- COSTOS -->
+  <div class="card seccion">
+    <h4>Cálculo de Costos</h4>
+
+    <form [formGroup]="manoObraForm" (ngSubmit)="actualizarCostos()">
+      <label>Mano de obra</label>
+      <input formControlName="manoObra" type="number" class="form-control w-50">
+
+      <button class="btn btn-primary mt-3" type="submit">Actualizar Total</button>
+    </form>
+  </div>
+
+  <div class="mensaje">{{ mensaje }}</div>
+
+</div>

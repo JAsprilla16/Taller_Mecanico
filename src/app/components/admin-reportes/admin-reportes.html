@@ -1,0 +1,81 @@
+<div class="container mt-3">
+  <h2 class="titulo">Reportes - Panel Admin</h2>
+
+  <button class="btn btn-secondary mb-3" (click)="volver()">⬅ Volver</button>
+
+  <!-- SECCIÓN: Ingresos por mes -->
+  <div class="card p-3 mb-4">
+    <h4>Ingresos por mes</h4>
+
+    <div class="row g-2 align-items-center mb-3">
+      <div class="col-auto">
+        <label>Año</label>
+        <input type="number" class="form-control" [(ngModel)]="year" />
+      </div>
+
+      <div class="col-auto">
+        <label>Mes</label>
+        <select class="form-select" [(ngModel)]="month">
+          <option *ngFor="let m of [0,1,2,3,4,5,6,7,8,9,10,11]" [value]="m">
+            {{ ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][m] }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-auto">
+        <button class="btn btn-primary mt-4" (click)="cargarIngresos()">Cargar</button>
+      </div>
+    </div>
+
+    <div *ngIf="cargandoIngresos">Cargando ingresos...</div>
+
+    <div *ngIf="!cargandoIngresos">
+      <h5>Total del mes: ${{ ingresosTotal | number:'1.0-0' }}</h5>
+
+      <table class="table mt-2" *ngIf="ingresosDetalles.length">
+        <thead>
+          <tr><th>ID</th><th>Fecha</th><th>Mano obra</th><th>Repuestos</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of ingresosDetalles">
+            <td>{{ d.id }}</td>
+            <td>{{ d.fecha?.toDate ? (d.fecha.toDate() | date:'short') : (d.fecha | date:'short') }}</td>
+            <td>${{ d.manoObra | number:'1.0-0' }}</td>
+            <td>${{ d.repuestosTotal | number:'1.0-0' }}</td>
+            <td>${{ d.total | number:'1.0-0' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: Vehículos más frecuentes -->
+  <div class="card p-3 mb-4">
+    <h4>Vehículos más frecuentes</h4>
+    <div *ngIf="cargandoVehiculos">Cargando...</div>
+    <table class="table" *ngIf="!cargandoVehiculos">
+      <thead><tr><th>Vehículo</th><th>Veces</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let v of vehiculosFrecuentes">
+          <td>{{ v.vehiculoId }}</td>
+          <td>{{ v.count }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECCIÓN: Servicios por estado -->
+  <div class="card p-3 mb-4">
+    <h4>Servicios por estado (total)</h4>
+    <div *ngIf="cargandoServicios">Cargando...</div>
+    <table class="table" *ngIf="!cargandoServicios">
+      <thead><tr><th>Estado</th><th>Cantidad</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let s of serviciosEstado">
+          <td>{{ s.estado }}</td>
+          <td>{{ s.count }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container mt-4">
+
+  <h2 class="text-center mb-4 titulo">Panel de Administración</h2>
+
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
+  </div>
+
+  <div class="row g-3">
+
+    <!-- Gestionar Órdenes -->
+    <div class="col-12 col-md-4">
+      <div class="card admin-card shadow">
+        <h4>Órdenes</h4>
+        <p>Administrar órdenes, estados y repuestos.</p>
+        <button class="btn btn-primary w-100" routerLink="/admin/ordenes">Ir</button>
+      </div>
+    </div>
+
+    <!-- Reportes -->
+    <div class="col-12 col-md-4">
+      <div class="card admin-card shadow">
+        <h4>Reportes</h4>
+        <p>Ingresos y actividad del taller.</p>
+        <button class="btn btn-primary w-100" routerLink="/admin/reportes">Ir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

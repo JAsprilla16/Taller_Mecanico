@@ -1,0 +1,14 @@
+<h2 class="titulo">Historial del Vehículo: {{ vehiculoId }}</h2>
+
+<button class="btn btn-secondary mb-3" (click)="volver()">
+  ⬅ Volver
+</button>
+
+<div class="historial-container">
+  <div class="historial-card" *ngFor="let orden of historial$ | async">
+    <div><strong>Estado:</strong> {{ orden.estado }}</div>
+    <div><strong>Motivo:</strong> {{ orden.motivo }}</div>
+    <div><strong>Cliente UID:</strong> {{ orden.propietarioUid }}</div>
+    <div><strong>Fecha:</strong> {{ orden.fecha?.toDate() | date:'short' }}</div>
+  </div>
+</div>

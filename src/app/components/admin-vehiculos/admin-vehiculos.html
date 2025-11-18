@@ -1,0 +1,46 @@
+<h2 class="titulo">Gestión de Vehículos</h2>
+
+<button class="btn btn-secondary mb-3" (click)="volver()">⬅ Volver</button>
+
+<table class="table table-striped mt-3">
+  <thead>
+    <tr>
+      <th>Placa</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Color</th>
+      <th>Año</th>
+      <th>Propietario (UID)</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let v of vehiculos$ | async">
+      <td>{{ v.placa }}</td>
+      <td>{{ v.marca }}</td>
+      <td>{{ v.modelo }}</td>
+      <td>{{ v.color }}</td>
+      <td>{{ v.anho }}</td>
+      <td>{{ v.propietarioUid }}</td>
+      <td>
+        <button class="btn btn-warning btn-sm me-2" (click)="editar(v)">Editar</button>
+        <button class="btn btn-danger btn-sm" (click)="eliminar(v.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal / Sección para editar -->
+<div class="card p-3 mt-4" *ngIf="editando">
+  <h4>Editar Vehículo</h4>
+
+  <input class="form-control mb-2" [(ngModel)]="editando.placa" placeholder="Placa" />
+  <input class="form-control mb-2" [(ngModel)]="editando.marca" placeholder="Marca" />
+  <input class="form-control mb-2" [(ngModel)]="editando.modelo" placeholder="Modelo" />
+  <input class="form-control mb-2" [(ngModel)]="editando.color" placeholder="Color" />
+  <input class="form-control mb-2" [(ngModel)]="editando.anho" placeholder="Año" type="number" />
+
+  <button class="btn btn-success me-2" (click)="guardar()">Guardar</button>
+  <button class="btn btn-secondary" (click)="editando = null">Cancelar</button>
+</div>

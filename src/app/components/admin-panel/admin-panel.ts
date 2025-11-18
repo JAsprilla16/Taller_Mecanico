@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   selector: 'app-admin',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './admin.html',
-  styleUrl: './admin.css',
+  templateUrl: './admin-panel.html',
+  styleUrls: ['./admin-panel.css'],
 })
 export class Admin {
 

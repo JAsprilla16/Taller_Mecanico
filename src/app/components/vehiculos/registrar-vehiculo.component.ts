@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { VehiculosService, VehiculoPayload } from '../../services/vehiculos.service';
+import { VehiculosService } from '../../services/vehiculos.service';
+import { Vehiculo } from '../../models/vehiculo';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 
@@ -19,6 +20,7 @@ interface VehiculoForm {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './registrar-vehiculo.component.html',
+  styleUrls: ['./registrar-vehiculo.component.css']
 })
 export class RegistrarVehiculoComponent {
   form: any;
@@ -68,7 +70,7 @@ export class RegistrarVehiculoComponent {
           return;
         }
 
-        const payload: VehiculoPayload = {
+        const payload: Vehiculo = {
           placa: val.placa.trim().toUpperCase(),
           marca: val.marca.trim(),
           modelo: val.modelo.trim(),

@@ -1,17 +1,44 @@
-<h1 style="color:red; font-size:40px;">Agenda o revisa tus citas</h1>
+<div class="panel-wrapper">
 
-<div *ngIf="user$ | async as user; else noUser">
-  <h2>Bienvenido, {{ user.displayName || user.email }}</h2>
+  <div *ngIf="user$ | async as user; else noUser" class="panel-card">
 
-  <div class="acciones">
-    <button (click)="irARegistrarVehiculo()">🚗 Registrar vehículo</button>
-    <button (click)="irASolicitarRevision()">🧰 Solicitar revisión</button>
-    <button (click)="irAEstadoOrden()">📋 Estado de orden</button>
-    <button (click)="irAHistorial()">🕓 Historial de servicios</button>
-    <button (click)="logout()">🚪 Cerrar sesión</button>
+    <h1 class="titulo-principal">Agenda o revisa tus citas</h1>
+
+    <h2 class="bienvenido">Bienvenido, 
+      <span>{{ user.displayName || user.email }}</span>
+    </h2>
+
+    <div class="acciones">
+
+      <div class="accion-card" (click)="irARegistrarVehiculo()">
+        🚗
+        <p>Registrar vehículo</p>
+      </div>
+
+      <div class="accion-card" (click)="irASolicitarRevision()">
+        🧰
+        <p>Solicitar revisión</p>
+      </div>
+
+      <div class="accion-card" (click)="irAEstadoOrden()">
+        📋
+        <p>Estado de orden</p>
+      </div>
+
+      <div class="accion-card" (click)="irAHistorial()">
+        🕓
+        <p>Historial de servicios</p>
+      </div>
+
+      <div class="accion-card logout" (click)="logout()">
+        🚪
+        <p>Cerrar sesión</p>
+      </div>
+
+    </div>
   </div>
-</div>
 
-<ng-template #noUser>
-  <p>No hay usuario autenticado.</p>
-</ng-template>
+  <ng-template #noUser>
+    <p>No hay usuario autenticado.</p>
+  </ng-template>
+</div>

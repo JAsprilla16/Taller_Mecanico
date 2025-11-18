@@ -1,0 +1,10 @@
+.titulo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+table {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}

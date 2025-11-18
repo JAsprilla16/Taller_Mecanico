@@ -1,0 +1,67 @@
+/* Fondo degradado oro rosa */
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #df4f7f, #5ea9f9, #0493f9);
+  padding-top: 20px;
+}
+
+/* Título */
+.titulo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Tarjetas estilo rose-gold premium */
+.admin-card {
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+
+  /* Fondo metálico rose-gold */
+  background: linear-gradient(135deg, #ffe4ec, #f7b4ca);
+
+  /* Borde dorado-rosado */
+  border: 1px solid #e9a5c1;
+
+  /* Sombra cálida premium */
+  box-shadow: 0 8px 20px rgba(233, 165, 193, 0.35);
+
+  transition: 0.25s ease-in-out;
+}
+
+.admin-card h4 {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #5a2e3f; /* tono vino suave */
+}
+
+.admin-card p {
+  font-size: 14px;
+  color: #6c4050;
+}
+
+/* Efecto hover rose-gold más fuerte */
+.admin-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(233, 165, 193, 0.55);
+}
+
+/* Botón primario con estilo que combine */
+.btn-primary {
+  border-radius: 10px;
+  background: #cc6e97;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background: #b45c82;
+}
+
+/* Botón cerrar sesión */
+.btn-danger {
+  border-radius: 10px;
+}
+

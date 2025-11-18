@@ -1,28 +1,24 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { Auth } from '@angular/fire/auth';
+import { AuthService } from '../services/auth.service';
+import { firstValueFrom } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 export const AdminGuard: CanActivateFn = async () => {
-  const auth = inject(Auth);
+  const authService = inject(AuthService);
   const router = inject(Router);
 
-  const user = auth.currentUser;
+  const adminEmail = 'arcosasprillajose@gmail.com';
 
-  // Si no hay usuario logueado → al login
-  if (!user) {
-    router.navigate(['/login']);
-    return false;
+  // Espera a que Firebase devuelva el usuario real
+  const user = await firstValueFrom(authService.user$.pipe(take(1)));
+
+  if (user && user.email === adminEmail) {
+    return true;
   }
 
-  // Correo del administrador "designado"
-  const adminEmail = "arcosasprillajose@gmail.com";
-
-  // Validamos que el correo coincida 100%
-  if (user.email === adminEmail) {
-    return true; // SÍ ES ADMIN
-  }
-
-  // Si no es admin → lo mandamos al panel normal
-  router.navigate(['/panel']);
+  router.navigate(['/login']);
   return false;
 };
+
+

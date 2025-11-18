@@ -14,24 +14,17 @@ export class AuthService {
   ) {
     this.user$ = user(this.auth);
   }
+async loginWithGoogle() {
+  const provider = new GoogleAuthProvider();
 
-  async loginWithGoogle(): Promise<string | null> {
-    const provider = new GoogleAuthProvider();
-    const res = await signInWithPopup(this.auth, provider);
+  // 🔹 Esto obliga a mostrar las cuentas SIEMPRE
+  provider.setCustomParameters({
+    prompt: 'select_account'
+  });
 
-    const user = res.user;
-
-    // Guardamos el usuario en Firestore para registro
-    await this.userService.crearUsuario({
-      uid: user.uid,
-      nombre: user.displayName ?? '',
-      email: user.email ?? '',
-      foto: user.photoURL ?? '',
-      rol: 'cliente'   // ya no importa, el admin es por correo
-    });
-
-    return user.email; // devolvemos el email del usuario
-  }
+  const res = await signInWithPopup(this.auth, provider);
+  return res; 
+}
 
   logout() {
     return signOut(this.auth);
